@@ -12,16 +12,16 @@ package Model;
 public class Member {
     
     // Declare attributes
-    Integer id;
-    String firstName;
-    String middleName;
-    String lastName;
-    String gender;
-    String phone;
-    String dob;
-    String email;
-    boolean hoh;
-    Integer familyID;
+    private Integer id;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String gender;
+    private String phone;
+    private String dob;
+    private String email;
+    private boolean hoh;
+    private Integer familyID;
     
     // Constructor Method
 

@@ -24,7 +24,6 @@ public class Member {
     private Integer familyID;
     
     // Constructor Method
-
     public Member(Integer id, String firstName, String middleName, String lastName, String gender, String phone, String dob, String email, boolean hoh, Integer familyID) {
         this.id = id;
         this.firstName = firstName;

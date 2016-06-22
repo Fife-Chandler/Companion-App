@@ -11,7 +11,7 @@ public class Auth {
     public Auth(
 	Integer id,
 	String username,
-  String password, 
+  	String password, 
 	boolean privileage, 
 	String description,
 	Integer memberID
@@ -61,7 +61,7 @@ public class Auth {
         return description;
     }
 
-    public void setDescription(String desription) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

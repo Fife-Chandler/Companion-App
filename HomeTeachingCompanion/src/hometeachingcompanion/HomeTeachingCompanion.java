@@ -7,6 +7,7 @@ package hometeachingcompanion;
 
 import Control.FamiliesController;
 import Model.Families;
+import java.util.List;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -37,7 +38,18 @@ public class HomeTeachingCompanion {
             familiesController.deleteFamily(sessionFactory, testFamily3);
             
             // Test FamiliesController - View all families
-            familiesController.viewFamilies(sessionFactory, null);
+            List families = familiesController.viewFamilies(sessionFactory);
+            for (Object family : families) {
+                Families currentFamily = (Families) family;
+                System.out.println("Family");
+                System.out.println("-----------------------");
+                System.out.println("Name: " + currentFamily.getFamilyName());
+                System.out.println("Address: " + currentFamily.getAddress());
+                System.out.println("City: " + currentFamily.getCity());
+                System.out.println("State: " + currentFamily.getSt());
+                System.out.println("Zip: " + currentFamily.getZip());
+                System.out.println("\n");
+            }
         }
         
     }

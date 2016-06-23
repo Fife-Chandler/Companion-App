@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-  <class name="Families" table="families">
-      <id name="id" type="int" column="id">
-          <generator class="native"/>
-      </id>
-      <property name="familyName" column="familyName" type="string"/>
-      <property name="address" column="address" type="string"/>
-      <property name="city" column="city" type="string"/>
-      <property name="state" column="state" type="string"/>
-      <property name="zip" column="zip" type="int"/>
-  </class>
+    <class name="Families" table="families">
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="familyName" column="familyName" type="string"/>
+        <property name="address" column="address" type="string"/>
+        <property name="city" column="city" type="string"/>
+        <property name="st" column="st" type="string"/>
+        <property name="zip" column="zip" type="int"/>
+    </class>
 </hibernate-mapping>

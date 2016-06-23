@@ -5,27 +5,36 @@
  */
 package Model;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author co075oh
  */
-public class Families {
+@Entity
+public class Families implements Serializable {
     
     // Declare attributes
+    @Id
     private Integer id;
     private String familyName;
     private String address;
     private String city;
-    private String state;
+    private String st;
     private String zip;
     
-    // Constructor Method
-    public Families(Integer id, String familyName, String address, String city, String state, String zip) {
+    // Constructor Methods
+    public Families() {
+    }
+    
+    public Families(Integer id, String familyName, String address, String city, String st, String zip) {
         this.id = id;
         this.familyName = familyName;
         this.address = address;
         this.city = city;
-        this.state = state;
+        this.st = st;
         this.zip = zip;
     }
     
@@ -62,12 +71,12 @@ public class Families {
         this.city = city;
     }
 
-    public String getState() {
-        return state;
+    public String getSt() {
+        return st;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setSt(String st) {
+        this.st = st;
     }
 
     public String getZip() {

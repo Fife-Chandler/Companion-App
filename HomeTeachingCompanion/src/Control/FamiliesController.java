@@ -44,7 +44,18 @@ public class FamiliesController {
     public ArrayList<Families> viewFamilies(String search) {
         ArrayList<Families> families = new ArrayList<>();
         this.session.beginTransaction();
-        
+        this.session.delete(search);  //Need to change this to get the full list of families in an ArrayList
+        this.session.getTransaction().commit();
         return families;
+    }
+    
+    public void displayFamily(Families family) {
+        System.out.println("Family");
+        System.out.println("-----------------------");
+        System.out.println("Name: " + family.getFamilyName());
+        System.out.println("Address: " + family.getAddress());
+        System.out.println("City: " + family.getCity());
+        System.out.println("State: " + family.getSt());
+        System.out.println("Zip: " + family.getZip());
     }
 }

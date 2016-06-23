@@ -5,6 +5,9 @@
  */
 package hometeachingcompanion;
 
+import Control.FamiliesController;
+import Model.Families;
+
 /**
  *
  * @author co075oh
@@ -16,6 +19,13 @@ public class HomeTeachingCompanion {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        // Test FamiliesController
+        Families testFamily = new Families(1, "Smith", "50 N West Temple", "Salt Lake City", "Utah", "84150");
+        FamiliesController familiesController = new FamiliesController();
+        familiesController.displayFamily(testFamily);
+        //familiesController.addFamily(testFamily);
+        
     }
     
 }

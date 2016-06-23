@@ -6,6 +6,7 @@
 package Model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -19,10 +20,15 @@ public class Families implements Serializable {
     // Declare attributes
     @Id
     private Integer id;
+    @Column (name="familyName")
     private String familyName;
+    @Column (name="address")
     private String address;
+    @Column (name="city")
     private String city;
+    @Column (name="st")
     private String st;
+    @Column (name="zip")
     private String zip;
     
     // Constructor Methods

@@ -7,6 +7,8 @@ package hometeachingcompanion;
 
 import Control.FamiliesController;
 import Model.Families;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 /**
  *
@@ -19,12 +21,15 @@ public class HomeTeachingCompanion {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         
         // Test FamiliesController
         Families testFamily = new Families(1, "Smith", "50 N West Temple", "Salt Lake City", "Utah", "84150");
         FamiliesController familiesController = new FamiliesController();
         familiesController.displayFamily(testFamily);
-        //familiesController.addFamily(testFamily);
+        familiesController.addFamily(sessionFactory, testFamily);
+        
+        sessionFactory.close();
         
     }
     

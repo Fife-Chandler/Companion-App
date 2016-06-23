@@ -28,11 +28,6 @@ public class FamiliesController {
         return false;
     }
     
-    /**
-     *
-     * @param search
-     * @return
-     */
     public ArrayList<Families> viewFamilies(String search) {
         ArrayList<Families> families = new ArrayList<>();
         

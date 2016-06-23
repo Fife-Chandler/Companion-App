@@ -5,10 +5,37 @@
  */
 package Control;
 
+import Model.Families;
+import java.util.ArrayList;
+
 /**
  *
  * @author co075oh
  */
 public class FamiliesController {
+    public boolean addFamily(Families family) {
+        
+        return false;
+    }
     
+    public boolean updateFamily(Families family) {
+        
+        return false;
+    }
+    
+    public boolean deleteFamily(Families family) {
+        
+        return false;
+    }
+    
+    /**
+     *
+     * @param search
+     * @return
+     */
+    public ArrayList<Families> viewFamilies(String search) {
+        ArrayList<Families> families = new ArrayList<>();
+        
+        return families;
+    }
 }

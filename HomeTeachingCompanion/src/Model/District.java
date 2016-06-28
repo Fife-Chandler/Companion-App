@@ -5,20 +5,28 @@
  */
 package Model;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author co075oh
  */
-public class District {
+@Entity
+public class District implements Serializable {
     
     // Declare attributes
+    @Id
     private double id;
-    private double memberid;
+    @Column (name="memberID")
+    private double memberID;
 
     // Constructor Method
-    public District(double id, double memberid) {
+    public District(double id, double memberID) {
         this.id = id;
-        this.memberid = memberid;
+        this.memberID = memberID;
     }
     
     // Getter and Setter Methods
@@ -30,11 +38,11 @@ public class District {
         this.id = id;
     }
 
-    public double getMemberid() {
-        return memberid;
+    public double getMemberID() {
+        return memberID;
     }
 
-    public void setMemberid(double memberid) {
-        this.memberid = memberid;
+    public void setMemberID(double memberID) {
+        this.memberID = memberID;
     }
 }

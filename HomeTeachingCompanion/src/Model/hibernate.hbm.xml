@@ -17,6 +17,5 @@
             <generator class="native"/>
         </id>
         <property name="memberID" column="memberID" type="int"/>
-        
     </class>
 </hibernate-mapping>

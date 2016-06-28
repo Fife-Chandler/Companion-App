@@ -40,29 +40,11 @@ public class ClientConnThread implements Runnable {
             // Gather information from client
             command = inputStream.nextLine();
             switch(command) {
-                case "createMember":
+                case "command1":
                     data = inputStream.nextLine();
-                    this.createMember(data);
                     break;
-                case "updateMember":
+                case "command2":
                     data = inputStream.nextLine();
-                    this.updateMember(data);
-                    break;
-                case "retrieveMember":
-                    data = inputStream.nextLine();
-                    this.retrieveMember(data);
-                    break;
-                case "retrieveAllMembers":
-                    data = inputStream.nextLine();
-                    this.retrieveAllMembers(data);
-                    break;
-                case "retrieveAllYouth":
-                    data = inputStream.nextLine();
-                    this.retrieveAllYouth(data);
-                    break;
-                case "authMember":
-                    data = inputStream.nextLine();
-                    this.authMember(data);
                     break;
                 case "bye":
                     done = true;
@@ -75,36 +57,6 @@ public class ClientConnThread implements Runnable {
                     }
             }
         }
-    }
-
-    // Create member method
-    private void createMember(String data) {
-        this.outputStream.println("createMember called!");
-    }
-
-    // Update member method
-    private void updateMember(String data) {
-        this.outputStream.println("updateMember called!");
-    }
-
-    // Retrieve member method
-    private void retrieveMember(String data) {
-        this.outputStream.println("retrieveMember called!");
-    }
-
-    // Retrieve all members method
-    private void retrieveAllMembers(String data) {
-        this.outputStream.println("retrieveAllMembers called!");
-    }
-
-    // Retrieve all youth method
-    private void retrieveAllYouth(String data) {
-        this.outputStream.println("retrieveAllYouth called!");
-    }
-
-    // Authenticate member method
-    private void authMember(String data) {
-        this.outputStream.println("authMember called!");
     }
     
 }

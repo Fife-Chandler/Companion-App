@@ -15,7 +15,7 @@ import org.hibernate.cfg.Configuration;
  *
  * @author co075oh
  */
-public class HomeTeachingCompanion {
+public class HomeTeachingCompanionSrvr {
 
     /**
      * @param args the command line arguments

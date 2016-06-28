@@ -11,4 +11,12 @@
         <property name="st" column="st" type="string"/>
         <property name="zip" column="zip" type="string"/>
     </class>
+    
+    <class name="Model.District" table="district">
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="memberID" column="memberID" type="int"/>
+        
+    </class>
 </hibernate-mapping>

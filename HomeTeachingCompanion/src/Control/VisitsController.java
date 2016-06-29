@@ -1,7 +1,7 @@
 package Control;
 
 
-import Model.Log;
+import Model.Visit;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,40 +10,40 @@ import org.hibernate.SessionFactory;
  *
  * @author Koop
  */
-public class LogController {
+public class VisitsController {
     
-    public boolean addLog(SessionFactory sessionFactory, Log) {
+    public boolean addVisit(SessionFactory sessionFactory, Visit visit) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.save(Log);
+            session.save(visit);
             session.getTransaction().commit();
         }
         return false;
     }
     
-     public boolean updateLog(SessionFactory sessionFactory, Log) {
+     public boolean updateVisit(SessionFactory sessionFactory, Visit visit) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.update(Log);
+            session.update(visit);
             session.getTransaction().commit();
         }
         return false;
     }
      
-    public boolean deleteLog(SessionFactory sessionFactory, Log) {
+    public boolean deleteVisit(SessionFactory sessionFactory, Visit visit) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.delete(Log);
+            session.delete(visit);
             session.getTransaction().commit();
         }
         return false;
     }
     
-    public List<Log> viewLog(SessionFactory sessionFactory) {
-        List<Log> Log;
+    public List<Visit> viewVisits(SessionFactory sessionFactory) {
+        List<Visit> Log;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            Log = session.createCriteria(Log.class).list();
+            Log = session.createCriteria(Visit.class).list();
         }
         return Log;
     }

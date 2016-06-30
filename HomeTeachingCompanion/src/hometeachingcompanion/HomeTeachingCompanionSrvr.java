@@ -23,11 +23,10 @@ import org.hibernate.cfg.Configuration;
 public class HomeTeachingCompanionSrvr {
 
     // Declare Executor Service
-    private static final int threadCount = 4;
-    private static final ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
+    private static final ExecutorService EXECUTOR_SERVICE = Executors.newCachedThreadPool();
     
     // Declare Session Factory
-    private static final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+    private static final SessionFactory SESSION_FACTORY = new Configuration().configure().buildSessionFactory();
     
     /**
      * @param args the command line arguments
@@ -38,18 +37,18 @@ public class HomeTeachingCompanionSrvr {
         FamiliesController familiesController = new FamiliesController();
         // Test FamiliesController - Add a family
         Families testFamily1 = new Families(1, "Smith", "50 N West Temple", "Salt Lake City", "Utah", "84150");
-        familiesController.addFamily(sessionFactory, testFamily1);
+        familiesController.addFamily(SESSION_FACTORY, testFamily1);
 
         // Test FamiliesController - Update a family
         Families testFamily2 = new Families(6, "Yandle", "953 5th Street South", "New Valdosta", "GA", "31601");
-        familiesController.updateFamily(sessionFactory, testFamily2);
+        familiesController.updateFamily(SESSION_FACTORY, testFamily2);
 
         // Test FamiliesController - Delete a family
         Families testFamily3 = new Families(5, "Smith", "187 5th Avenue", "Yonkers", "NY", "10701");
-        familiesController.deleteFamily(sessionFactory, testFamily3);
+        familiesController.deleteFamily(SESSION_FACTORY, testFamily3);
 
         // Test FamiliesController - View all families
-        List families = familiesController.viewFamilies(sessionFactory);
+        List families = familiesController.viewFamilies(SESSION_FACTORY);
         for (Object family : families) {
             Families currentFamily = (Families) family;
             System.out.println("Family");
@@ -68,9 +67,18 @@ public class HomeTeachingCompanionSrvr {
         // Await client connections
         while (true) {
             Socket socket = serverSocket.accept();
-            executorService.submit(new ClientConnThread(socket));
+            EXECUTOR_SERVICE.submit(new ClientConnThread(socket));
         }
         
+    }
+
+    // Getter methods
+    public static ExecutorService getEXECUTOR_SERVICE() {
+        return EXECUTOR_SERVICE;
+    }
+
+    public static SessionFactory getSESSION_FACTORY() {
+        return SESSION_FACTORY;
     }
     
 }

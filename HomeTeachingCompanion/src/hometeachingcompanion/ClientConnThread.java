@@ -5,6 +5,7 @@
  */
 package hometeachingcompanion;
 
+import Control.MemberControl;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
@@ -23,6 +24,9 @@ public class ClientConnThread implements Runnable {
     Scanner inputStream;
     PrintStream outputStream;
     
+    // Declare Controller Classes
+    private final MemberControl memberControl = new MemberControl();
+    
     // Default Constructor
     public ClientConnThread (Socket socket) throws IOException {
         this.socket = socket;
@@ -40,8 +44,13 @@ public class ClientConnThread implements Runnable {
             // Gather information from client
             command = inputStream.nextLine();
             switch(command) {
-                case "command1":
+                case "authUser":
                     data = inputStream.nextLine();
+                    String email = inputStream.nextLine();
+                    String password = inputStream.nextLine();
+                    boolean authenticated = this.authUser(email, password);
+                    outputStream.println(authenticated);
+                    htcLogger.log(command, email, "INFO");
                     break;
                 case "command2":
                     data = inputStream.nextLine();
@@ -57,6 +66,11 @@ public class ClientConnThread implements Runnable {
                     }
             }
         }
+    }
+
+    private boolean authUser(String email, String password) {
+        boolean returnData = memberControl.authMember(email, password);
+        return returnData;
     }
     
 }

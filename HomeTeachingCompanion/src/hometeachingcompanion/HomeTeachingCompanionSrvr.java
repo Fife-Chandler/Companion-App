@@ -7,12 +7,16 @@ package hometeachingcompanion;
 
 import Control.FamiliesController;
 import Model.Families;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -28,46 +32,35 @@ public class HomeTeachingCompanionSrvr {
     // Declare Session Factory
     private static final SessionFactory SESSION_FACTORY = new Configuration().configure().buildSessionFactory();
     
+    // Declare Log Writter
+    private static PrintWriter logFile = null;
+    
     /**
      * @param args the command line arguments
-     * @throws java.io.IOException
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         
-        FamiliesController familiesController = new FamiliesController();
-        // Test FamiliesController - Add a family
-        Families testFamily1 = new Families(1, "Smith", "50 N West Temple", "Salt Lake City", "Utah", "84150");
-        familiesController.addFamily(SESSION_FACTORY, testFamily1);
+        try {
 
-        // Test FamiliesController - Update a family
-        Families testFamily2 = new Families(6, "Yandle", "953 5th Street South", "New Valdosta", "GA", "31601");
-        familiesController.updateFamily(SESSION_FACTORY, testFamily2);
-
-        // Test FamiliesController - Delete a family
-        Families testFamily3 = new Families(5, "Smith", "187 5th Avenue", "Yonkers", "NY", "10701");
-        familiesController.deleteFamily(SESSION_FACTORY, testFamily3);
-
-        // Test FamiliesController - View all families
-        List families = familiesController.viewFamilies(SESSION_FACTORY);
-        for (Object family : families) {
-            Families currentFamily = (Families) family;
-            System.out.println("Family");
-            System.out.println("-----------------------");
-            System.out.println("Name: " + currentFamily.getFamilyName());
-            System.out.println("Address: " + currentFamily.getAddress());
-            System.out.println("City: " + currentFamily.getCity());
-            System.out.println("State: " + currentFamily.getSt());
-            System.out.println("Zip: " + currentFamily.getZip());
-            System.out.println("\n");
-        }
+            // Create Server Socket
+            ServerSocket serverSocket = new ServerSocket(7890);
+            
+            // Open log file
+            String filePath = "log.txt";
+            HomeTeachingCompanionSrvr.logFile = new PrintWriter(new FileWriter(filePath, true));
         
-        // Create Server Socket
-        ServerSocket serverSocket = new ServerSocket(7890);
-        
-        // Await client connections
-        while (true) {
-            Socket socket = serverSocket.accept();
-            EXECUTOR_SERVICE.submit(new ClientConnThread(socket));
+            // Log application start time
+            htcLogger.log("Application Started", "Server application started and listening on " + serverSocket.getLocalSocketAddress(), "INFO");
+            
+            // Await client connections
+            while (true) {
+                Socket socket = serverSocket.accept();
+                htcLogger.log("newConnection", "New Connection from " + socket.getRemoteSocketAddress(), "INFO");
+                EXECUTOR_SERVICE.submit(new ClientConnThread(socket));
+            }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(HomeTeachingCompanionSrvr.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -79,6 +72,10 @@ public class HomeTeachingCompanionSrvr {
 
     public static SessionFactory getSESSION_FACTORY() {
         return SESSION_FACTORY;
+    }
+    
+    public static PrintWriter getLogFile() {
+        return logFile;
     }
     
 }

@@ -5,14 +5,11 @@
  */
 package hometeachingcompanion;
 
-import Control.FamiliesController;
-import Model.Families;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -31,6 +28,10 @@ public class HomeTeachingCompanionSrvr {
     
     // Declare Session Factory
     private static final SessionFactory SESSION_FACTORY = new Configuration().configure().buildSessionFactory();
+    
+    // Set Server and port variables
+    public static final String SERVER = "127.0.0.1";
+    public static final int PORT = 7890;
     
     // Declare Log Writter
     private static PrintWriter logFile = null;
